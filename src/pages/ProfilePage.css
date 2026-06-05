@@ -1,0 +1,87 @@
+.profile-page { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+.back-btn { background: none; border: none; color: var(--text-secondary); font-size: 14px; cursor: pointer; padding: 0; margin-bottom: 20px; font-family: var(--font-main); }
+.back-btn:hover { color: var(--accent); }
+
+.profile-header { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; gap: 20px; margin-bottom: 16px; align-items: flex-start; flex-wrap: wrap; }
+.profile-avatar-wrap { position: relative; flex-shrink: 0; }
+.profile-avatar { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--border); }
+.premium-badge { position: absolute; bottom: -4px; right: -4px; background: #F59E0B; color: #000; font-size: 12px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.profile-info { flex: 1; min-width: 0; }
+.profile-name { font-size: 22px; font-weight: 700; color: var(--text-primary); margin: 0; }
+.profile-username { font-size: 13px; color: var(--text-secondary); display: block; margin-bottom: 4px; }
+.profile-title { font-size: 13px; font-weight: 600; display: block; margin-bottom: 8px; }
+.profile-bio { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+.profile-stats { display: flex; gap: 20px; }
+.stat-item { display: flex; flex-direction: column; align-items: center; }
+.stat-value { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+.stat-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.mine-btn { width: 100%; padding: 14px; border: 2px dashed var(--accent); border-radius: 12px; background: rgba(34,197,94,0.04); color: var(--accent); font-size: 16px; font-weight: 700; cursor: pointer; font-family: var(--font-main); margin-bottom: 20px; transition: all 0.2s; }
+.mine-btn:hover { background: rgba(34,197,94,0.08); border-style: solid; }
+.mine-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.mine-icon { font-size: 20px; }
+
+/* Добыча */
+.mining-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.mining-block { text-align: center; user-select: none; }
+.block-cracks { position: absolute; inset: 0; pointer-events: none; }
+.crack { position: absolute; font-size: 24px; animation: crackPulse 0.5s ease; }
+@keyframes crackPulse { 0%{opacity:1;transform:scale(0)} 100%{opacity:0;transform:scale(1.5)} }
+.block-emoji { font-size: 120px; display: block; transition: transform 0.1s; }
+.mining-overlay:active .block-emoji { transform: scale(0.95); }
+.block-label { font-size: 20px; color: var(--accent); font-weight: 700; margin-top: 12px; }
+.block-progress { width: 200px; height: 6px; background: var(--border); border-radius: 3px; margin: 12px auto 0; overflow: hidden; }
+.block-progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.1s; }
+
+/* Результат */
+.result-overlay { position: fixed; inset: 0; z-index: 110; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; }
+.result-card { background: #161616; border: 1px solid var(--border); border-radius: 20px; padding: 32px; text-align: center; max-width: 300px; width: 90%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.result-rarity { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-mono); }
+.result-shape { font-size: 80px; }
+.result-name { font-size: 20px; color: var(--text-primary); margin: 0; }
+.result-btn { width: 100%; padding: 12px; border: none; border-radius: 10px; background: var(--accent); color: #000; font-weight: 700; font-size: 15px; cursor: pointer; font-family: var(--font-main); margin-top: 8px; }
+
+/* Табы */
+.profile-tabs { display: flex; gap: 4px; margin-bottom: 16px; background: var(--bg-card); border-radius: 10px; padding: 4px; border: 1px solid var(--border); }
+.prof-tab { flex: 1; padding: 8px; border: none; border-radius: 8px; background: transparent; color: var(--text-secondary); font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-main); transition: all 0.15s; }
+.prof-tab.active { background: var(--accent); color: #0A0A0A; }
+
+/* Коллекция */
+.artifacts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.artifact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: transform 0.15s; }
+.artifact-card:hover { transform: translateY(-2px); }
+.artifact-card.empty { opacity: 0.3; border-style: dashed; }
+.artifact-shape { font-size: 40px; }
+.artifact-name { font-size: 12px; color: var(--text-primary); font-weight: 600; }
+.artifact-rarity { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono); }
+.artifact-date { font-size: 9px; color: var(--text-secondary); }
+
+/* Витрина */
+.showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.showcase-slot { aspect-ratio: 1; }
+.showcase-artifact { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; height: 100%; }
+.showcase-slot-empty { height: 100%; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border); border-radius: 12px; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+
+/* Аукцион */
+.auction-list { display: flex; flex-direction: column; gap: 10px; }
+.auction-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between; }
+.auction-artifact { display: flex; align-items: center; gap: 12px; }
+.auction-shape { font-size: 36px; }
+.auction-info { display: flex; flex-direction: column; }
+.auction-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.auction-rarity { font-size: 10px; font-weight: 700; text-transform: uppercase; font-family: var(--font-mono); }
+.auction-seller { font-size: 11px; color: var(--text-secondary); }
+.auction-bid { display: flex; align-items: center; gap: 10px; }
+.bid-amount { font-size: 15px; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+.bid-btn { padding: 6px 14px; border: 1px solid var(--accent); border-radius: 8px; background: transparent; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-main); }
+.bid-btn:hover { background: var(--accent); color: #000; }
+
+@media (max-width: 480px) {
+  .profile-header { padding: 16px; gap: 14px; }
+  .profile-avatar { width: 56px; height: 56px; }
+  .profile-name { font-size: 18px; }
+  .artifacts-grid { grid-template-columns: repeat(2, 1fr); }
+  .showcase-grid { grid-template-columns: repeat(3, 1fr); }
+  .auction-card { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .auction-bid { width: 100%; justify-content: space-between; }
+}

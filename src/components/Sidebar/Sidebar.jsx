@@ -36,6 +36,11 @@ const Sidebar = () => {
           <span>⚡</span> Попробовать
         </button>
       </div>
+
+      <div className="sidebar-card">
+        <h3 className="sidebar-title">Профиль</h3>
+        <a href="/profile" className="profile-link">Мой профиль</a>
+      </div>
     </aside>
   );
 };
