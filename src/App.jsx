@@ -59,20 +59,20 @@ function RedditPost({ post }) {
 
   const shouldBlur = post.nsfw;
 
-  useEffect(() => {
+    useEffect(() => {
     if (!isHovered) {
       scrollAccum.current = 0;
       if (expanded) {
         setClosing(true);
-        setTimeout(() => { setExpanded(false); setClosing(false); }, 400);
+        setTimeout(() => { setExpanded(false); setClosing(false); }, 250);
       }
     }
   }, [isHovered]);
 
-  const handleWheel = (e) => {
+    const handleWheel = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const delta = e.deltaY > 0 ? -4 : 4;
+    const delta = e.deltaY > 0 ? 4 : -4;
     setStripeValue((prev) => Math.max(0, Math.min(100, prev + delta)));
   };
 

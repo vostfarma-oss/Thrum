@@ -14,7 +14,7 @@
   display: flex; flex-direction: column;
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
   overflow: hidden; position: relative;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s, box-shadow 0.2s;
+  transition: max-height 0.25s ease, border-color 0.2s, box-shadow 0.2s;
   padding-left: 34px;
   min-height: 100px;
   max-height: 280px;
@@ -47,7 +47,7 @@
 .stripe-fill {
   position: absolute; top: 0; left: 0; right: 0;
   background: rgba(255,255,255,0.12); border-radius: 2px;
-  height: 50%; transition: height 0.03s linear; pointer-events: none;
+  transition: height 0.03s linear; pointer-events: none;
 }
 .stripe-thumb {
   position: absolute; left: 50%; top: var(--stripe-value);
@@ -110,11 +110,11 @@
 .collapse-hint { bottom: auto; top: 3px; }
 @keyframes hintPulse { 0%,100%{opacity:0.06} 50%{opacity:0.3} }
 
-.expanded-area { animation: unfold 0.35s ease forwards; transform-origin: top; }
-@keyframes unfold { from { opacity:0; transform:scaleY(0.85); } to { opacity:1; transform:scaleY(1); } }
+.expanded-area { animation: unfold 0.2s ease forwards; transform-origin: top; }
+@keyframes unfold { from { opacity:0; transform:scaleY(0.9); } to { opacity:1; transform:scaleY(1); } }
 
-.reddit-post.closing .expanded-area { animation: fold 0.35s ease forwards; }
-@keyframes fold { from { opacity:1; transform:scaleY(1); } to { opacity:0; transform:scaleY(0.85); } }
+.reddit-post.closing .expanded-area { animation: fold 0.2s ease forwards; }
+@keyframes fold { from { opacity:1; transform:scaleY(1); } to { opacity:0; transform:scaleY(0.9); } }
 
 .extra-gallery { display: flex; gap: 4px; height: 160px; animation: fadeUp 0.3s ease backwards; animation-delay: 0.02s; }
 .gallery-item { flex: 1; overflow: hidden; }
