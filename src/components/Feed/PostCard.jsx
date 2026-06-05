@@ -99,8 +99,8 @@ const PostCard = ({ post }) => {
     const card = cardRef.current;
     const btnRect = btn.getBoundingClientRect();
     const cardRect = card.getBoundingClientRect();
-    const ox = btnRect.left + btnRect.width/2 - cardRect.left;
-    const oy = btnRect.top + btnRect.height/2 - cardRect.top;
+    const ox = btnRect.left + btnRect.width / 2 - cardRect.left;
+    const oy = btnRect.top + btnRect.height / 2 - cardRect.top;
     
     if (!clickIdx.current[effectKey]) clickIdx.current[effectKey] = 0;
     const presets = EFFECTS[effectKey];
@@ -112,16 +112,16 @@ const PostCard = ({ post }) => {
     for (let i = 0; i < p.count; i++) {
       let x, y;
       if (p.vertical) {
-        x = (Math.random() - 0.5) * p.spread * 0.6;
-        y = -10 - (i / p.count) * p.spread - Math.random() * 12;
+        x = (Math.random() - 0.5) * p.spread * 0.5;
+        y = -10 - (i / p.count) * p.spread - Math.random() * 10;
       } else if (p.horizontal) {
-        x = (i % 2 === 0 ? -1 : 1) * (12 + Math.random() * p.spread);
-        y = (Math.random() - 0.5) * p.spread * 0.5;
+        x = (i % 2 === 0 ? -1 : 1) * (10 + Math.random() * p.spread);
+        y = (Math.random() - 0.5) * p.spread * 0.4;
       } else {
         const a = p.angle[0] + (i / p.count) * (p.angle[1] - p.angle[0]) + (Math.random() - 0.5) * 0.5;
-        const d = 15 + Math.random() * p.spread;
+        const d = 10 + Math.random() * p.spread;
         x = Math.cos(a) * d;
-        y = Math.sin(a) * d - 8;
+        y = Math.sin(a) * d - 5;
       }
       flies.push({
         id: id + i,
@@ -129,12 +129,12 @@ const PostCard = ({ post }) => {
         x, y,
         size: p.sizes[0] + Math.random() * (p.sizes[1] - p.sizes[0]),
         rot: (Math.random() - 0.5) * 40,
-        delay: i * 0.022,
+        delay: i * 0.02,
         ox, oy,
       });
     }
     setFlyEmojis((prev) => [...prev, ...flies]);
-    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 850);
+    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 800);
   };
 
   const handleClick = () => {
@@ -219,7 +219,14 @@ const PostCard = ({ post }) => {
       )}
       {flyEmojis.map((f) => (
         <span key={f.id} className="fly-particle" style={{
-          '--x':`${f.x}px`,'--y':`${f.y}px`,'--s':`${f.size}px`,'--r':`${f.rot}deg`,'--d':`${f.delay}s`,'--ox':`${f.ox}px`,'--oy':`${f.oy}px`
+          left: `${f.ox}px`,
+          top: `${f.oy}px`,
+          '--x':`${f.x}px`,
+          '--y':`${f.y}px`,
+          '--s':`${f.size}px`,
+          '--r':`${f.rot}deg`,
+          '--d':`${f.delay}s`,
+          fontSize: 'var(--s)',
         }}>{f.emoji}</span>
       ))}
       <div className="shine-border" />
