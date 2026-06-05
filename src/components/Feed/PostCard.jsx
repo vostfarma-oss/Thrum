@@ -11,44 +11,44 @@ const REACTIONS = [
 
 const EFFECTS = {
   fire: [
-    { emojis: ['🔥','💥','🎆','🔥','💥','🎆','🔥'], count:7, spread:55, angle:[0,6.28], sizes:[8,26] },
-    { emojis: ['🔥','🔥','💥','🔥','🎆'], count:5, spread:40, angle:[0.5,5.5], sizes:[12,24] },
-    { emojis: ['💥','🎆','🔥','💥','🔥','🎆','💥','🔥'], count:8, spread:60, angle:[1,5], sizes:[6,22] },
-    { emojis: ['🔥','🎆','🔥','💥','🔥','🎆'], count:6, spread:45, angle:[2,4.5], sizes:[10,28] },
-    { emojis: ['🎆','💥','🔥','🎆','💥'], count:5, spread:35, angle:[3,6], sizes:[14,20] },
-    { emojis: ['🔥','💥','🔥','🎆','💥','🔥','🎆'], count:7, spread:50, angle:[0,3], sizes:[8,24] },
+    { emojis: ['🔥','💥','🎆','🔥','💥','🎆','🔥'], sizes:[6,8,10,14,18,22,28] },
+    { emojis: ['🔥','🔥','💥','🔥','🎆'], sizes:[8,12,16,20,26] },
+    { emojis: ['💥','🎆','🔥','💥','🔥','🎆','💥','🔥'], sizes:[5,7,9,12,15,19,24,30] },
+    { emojis: ['🔥','🎆','🔥','💥','🔥','🎆'], sizes:[7,11,14,18,22,28] },
+    { emojis: ['🎆','💥','🔥','🎆','💥'], sizes:[10,14,18,24,30] },
+    { emojis: ['🔥','💥','🔥','🎆','💥','🔥','🎆'], sizes:[6,9,12,16,20,26,32] },
   ],
   diamond: [
-    { emojis: ['💎','💠','💎','💠','💎'], count:5, spread:30, angle:[0,6.28], sizes:[10,18] },
-    { emojis: ['💠','💎','💠','💎','💠','💎'], count:6, spread:35, angle:[1,5], sizes:[8,16] },
-    { emojis: ['💎','💠','💠','💎'], count:4, spread:25, angle:[2,4], sizes:[12,20] },
-    { emojis: ['💠','💎','💠','💎','💠'], count:5, spread:40, angle:[0.5,5.5], sizes:[8,14] },
-    { emojis: ['💎','💠','💎','💠'], count:4, spread:28, angle:[3,6], sizes:[14,22] },
-    { emojis: ['💠','💠','💎','💠','💎','💠'], count:6, spread:32, angle:[0,4], sizes:[10,16] },
+    { emojis: ['💎','💠','💎','💠','💎'], sizes:[8,12,16,20,26] },
+    { emojis: ['💠','💎','💠','💎','💠','💎'], sizes:[6,10,14,18,22,28] },
+    { emojis: ['💎','💠','💠','💎'], sizes:[10,16,22,30] },
+    { emojis: ['💠','💎','💠','💎','💠'], sizes:[8,12,17,22,28] },
+    { emojis: ['💎','💠','💎','💠'], sizes:[12,18,24,32] },
+    { emojis: ['💠','💠','💎','💠','💎','💠'], sizes:[7,11,15,20,26,30] },
   ],
   brain: [
-    { emojis: ['🧠','💡','📚','🤔'], count:4, spread:30, angle:[-0.3,0.3], sizes:[12,20], vertical:true },
-    { emojis: ['💡','🧠','💡','📚','🤔'], count:5, spread:35, angle:[-0.4,0.4], sizes:[10,18], vertical:true },
-    { emojis: ['📚','🧠','💡'], count:3, spread:22, angle:[-0.2,0.2], sizes:[14,24], vertical:true },
-    { emojis: ['🧠','🤔','💡','🧠','📚','💡'], count:6, spread:40, angle:[-0.5,0.5], sizes:[8,16], vertical:true },
-    { emojis: ['💡','🧠','💡','📚'], count:4, spread:28, angle:[-0.35,0.35], sizes:[12,22], vertical:true },
-    { emojis: ['🤔','📚','🧠','💡','🤔'], count:5, spread:33, angle:[-0.45,0.45], sizes:[10,17], vertical:true },
+    { emojis: ['🧠','💡','📚','🤔'], sizes:[10,16,22,28], vertical:true },
+    { emojis: ['💡','🧠','💡','📚','🤔'], sizes:[8,12,18,24,30], vertical:true },
+    { emojis: ['📚','🧠','💡'], sizes:[14,22,32], vertical:true },
+    { emojis: ['🧠','🤔','💡','🧠','📚','💡'], sizes:[6,10,14,18,24,30], vertical:true },
+    { emojis: ['💡','🧠','💡','📚'], sizes:[12,18,26,34], vertical:true },
+    { emojis: ['🤔','📚','🧠','💡','🤔'], sizes:[9,14,20,28,36], vertical:true },
   ],
   clown: [
-    { emojis: ['🤡','😂','💀','🤪','😂','🤡'], count:6, spread:50, angle:[0,6.28], sizes:[10,22] },
-    { emojis: ['😂','🤪','💀','🤡','😂'], count:5, spread:44, angle:[1,5.5], sizes:[12,24] },
-    { emojis: ['🤪','😂','🤡','💀','😂','🤪'], count:6, spread:55, angle:[0.5,5], sizes:[8,18] },
-    { emojis: ['💀','🤡','😂','🤪'], count:4, spread:38, angle:[2,4.5], sizes:[14,26] },
-    { emojis: ['🤡','😂','🤪','💀','😂','🤡','🤪'], count:7, spread:60, angle:[3,6], sizes:[6,16] },
-    { emojis: ['😂','🤪','🤡','💀','😂'], count:5, spread:48, angle:[0,3.5], sizes:[10,20] },
+    { emojis: ['🤡','😂','💀','🤪','😂','🤡'], sizes:[8,12,16,20,26,32] },
+    { emojis: ['😂','🤪','💀','🤡','😂'], sizes:[10,15,20,28,36] },
+    { emojis: ['🤪','😂','🤡','💀','😂','🤪'], sizes:[7,11,15,20,26,34] },
+    { emojis: ['💀','🤡','😂','🤪'], sizes:[14,20,28,38] },
+    { emojis: ['🤡','😂','🤪','💀','😂','🤡','🤪'], sizes:[5,8,11,15,20,27,35] },
+    { emojis: ['😂','🤪','🤡','💀','😂'], sizes:[10,16,22,30,40] },
   ],
   flag: [
-    { emojis: ['🚩','⚠️','🤨','👎'], count:4, spread:35, angle:[-0.5,0.5], sizes:[12,18], horizontal:true },
-    { emojis: ['⚠️','🚩','👎','🤨','🚩'], count:5, spread:42, angle:[-0.6,0.6], sizes:[10,16], horizontal:true },
-    { emojis: ['🚩','👎','⚠️'], count:3, spread:28, angle:[-0.3,0.3], sizes:[14,22], horizontal:true },
-    { emojis: ['👎','⚠️','🚩','🤨','👎','🚩'], count:6, spread:48, angle:[-0.7,0.7], sizes:[8,14], horizontal:true },
-    { emojis: ['🤨','🚩','⚠️','👎'], count:4, spread:32, angle:[-0.4,0.4], sizes:[12,20], horizontal:true },
-    { emojis: ['🚩','🤨','👎','⚠️','🚩'], count:5, spread:38, angle:[-0.55,0.55], sizes:[10,15], horizontal:true },
+    { emojis: ['🚩','⚠️','🤨','👎'], sizes:[10,16,22,28], horizontal:true },
+    { emojis: ['⚠️','🚩','👎','🤨','🚩'], sizes:[8,12,18,24,32], horizontal:true },
+    { emojis: ['🚩','👎','⚠️'], sizes:[14,22,34], horizontal:true },
+    { emojis: ['👎','⚠️','🚩','🤨','👎','🚩'], sizes:[6,10,14,20,26,34], horizontal:true },
+    { emojis: ['🤨','🚩','⚠️','👎'], sizes:[12,18,26,36], horizontal:true },
+    { emojis: ['🚩','🤨','👎','⚠️','🚩'], sizes:[9,14,20,28,38], horizontal:true },
   ],
 };
 
@@ -59,6 +59,7 @@ const PostCard = ({ post }) => {
   const [flyEmojis, setFlyEmojis] = useState([]);
   const [hoverPreview, setHoverPreview] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [closing, setClosing] = useState(false);
   const scrollAccum = useRef(0);
   const hideTimer = useRef(null);
   const cardRef = useRef(null);
@@ -69,7 +70,13 @@ const PostCard = ({ post }) => {
   useEffect(() => {
     if (!isHovered) {
       scrollAccum.current = 0;
-      setExpanded(false);
+      if (expanded) {
+        setClosing(true);
+        setTimeout(() => {
+          setExpanded(false);
+          setClosing(false);
+        }, 400);
+      }
       setActiveReaction(null);
     }
   }, [isHovered]);
@@ -109,47 +116,49 @@ const PostCard = ({ post }) => {
 
     const id = Date.now();
     const flies = [];
-    for (let i = 0; i < p.count; i++) {
+    const count = p.emojis.length;
+    
+    for (let i = 0; i < count; i++) {
       let x, y;
       if (p.vertical) {
-        x = (Math.random() - 0.5) * p.spread * 0.5;
-        y = -10 - (i / p.count) * p.spread - Math.random() * 10;
+        x = (Math.random() - 0.5) * 40;
+        y = -8 - (i / count) * 60 - Math.random() * 15;
       } else if (p.horizontal) {
-        x = (i % 2 === 0 ? -1 : 1) * (10 + Math.random() * p.spread);
-        y = (Math.random() - 0.5) * p.spread * 0.4;
+        x = (i % 2 === 0 ? -1 : 1) * (12 + Math.random() * 45);
+        y = (Math.random() - 0.5) * 35;
       } else {
-        const a = p.angle[0] + (i / p.count) * (p.angle[1] - p.angle[0]) + (Math.random() - 0.5) * 0.5;
-        const d = 10 + Math.random() * p.spread;
-        x = Math.cos(a) * d;
-        y = Math.sin(a) * d - 5;
+        const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+        const dist = 12 + Math.random() * 50;
+        x = Math.cos(angle) * dist;
+        y = Math.sin(angle) * dist - 5;
       }
       flies.push({
         id: id + i,
-        emoji: p.emojis[i] || emoji,
+        emoji: p.emojis[i],
         x, y,
-        size: p.sizes[0] + Math.random() * (p.sizes[1] - p.sizes[0]),
-        rot: (Math.random() - 0.5) * 40,
-        delay: i * 0.02,
+        size: p.sizes[i],
+        rot: (Math.random() - 0.5) * 30,
+        delay: i * 0.025,
         ox, oy,
       });
     }
     setFlyEmojis((prev) => [...prev, ...flies]);
-    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 800);
+    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 900);
   };
 
   const handleClick = () => {
     if (post.nsfw && !isUnlocked) alert('Гейт — позже');
   };
 
-  const blurAmount = shouldBlur ? (hoverPreview ? '6px' : '22px') : 'none';
-  const blurScale = shouldBlur && hoverPreview ? 'scale(1.08)' : 'scale(1)';
+  const blurAmount = shouldBlur ? (hoverPreview ? '5px' : '20px') : 'none';
+  const blurScale = shouldBlur && hoverPreview ? 'scale(1.1)' : 'scale(1)';
   const activeData = REACTIONS.find((r) => r.main === activeReaction);
 
   return (
     <article
       ref={cardRef}
-      className={`post-card ${shouldBlur ? 'nsfw' : ''} ${isHovered ? 'hovered' : ''} ${expanded ? 'expanded' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
+      className={`post-card ${shouldBlur ? 'nsfw' : ''} ${isHovered ? 'hovered' : ''} ${expanded ? 'expanded' : ''} ${closing ? 'closing' : ''}`}
+      onMouseEnter={() => { setClosing(false); setIsHovered(true); }}
       onMouseLeave={() => { setIsHovered(false); handleReactionLeave(); setHoverPreview(false); }}
       onWheel={handleWheel}
       onClick={handleClick}
@@ -187,7 +196,8 @@ const PostCard = ({ post }) => {
       {!expanded && (
         <div className={`related-row ${activeData ? 'show' : ''}`} onMouseEnter={() => clearTimeout(hideTimer.current)} onMouseLeave={handleReactionLeave}>
           {activeData?.related.map((sub, i) => (
-            <button key={sub} className="rel-btn" style={{ animationDelay: `${i * 0.03}s` }} onClick={(e) => handleReactionClick(sub, 'clown', e)}>{sub}</button>
+            <button key={sub} className="rel-btn" style={{ animationDelay: `${i * 0.04}s` }}
+              onClick={(e) => handleReactionClick(sub, REACTIONS.find(r => r.main === activeReaction)?.effect || 'clown', e)}>{sub}</button>
           ))}
         </div>
       )}
@@ -209,7 +219,7 @@ const PostCard = ({ post }) => {
           </div>
           <div className="expanded-reactions">
             {REACTIONS.map(({ main, count, label, effect }, i) => (
-              <button key={main} className="exp-reaction" style={{ animationDelay: `${0.3 + i * 0.04}s` }}
+              <button key={main} className="exp-reaction" style={{ animationDelay: `${0.35 + i * 0.05}s` }}
                 onClick={(e) => handleReactionClick(main, effect, e)} title={label}>
                 <span className="exp-emoji">{main}</span><span className="exp-count">{count}</span>
               </button>
