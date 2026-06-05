@@ -2,12 +2,55 @@ import { useState, useRef, useEffect } from 'react';
 import './PostCard.css';
 
 const REACTIONS = [
-  { main: '🔥', related: ['❤️‍🔥', '💥', '🎆'], label: 'Огонь', count: 142, color: '#EF4444', effect: 'fire' },
-  { main: '💎', related: ['🏆', '✨', '👑'], label: 'Ценно', count: 89, color: '#60A5FA', effect: 'diamond' },
-  { main: '🧠', related: ['🤔', '📚', '💡'], label: 'Умно', count: 56, color: '#22C55E', effect: 'brain' },
-  { main: '🤡', related: ['😂', '💀', '🤪'], label: 'Смешно', count: 34, color: '#FACC15', effect: 'clown' },
-  { main: '🚩', related: ['⚠️', '🤨', '👎'], label: 'Спорно', count: 12, color: '#F97316', effect: 'flag' },
+  { main: '🔥', related: ['❤️‍🔥', '💥', '🎆'], label: 'Огонь', count: 142, effect: 'fire' },
+  { main: '💎', related: ['🏆', '✨', '👑'], label: 'Ценно', count: 89, effect: 'diamond' },
+  { main: '🧠', related: ['🤔', '📚', '💡'], label: 'Умно', count: 56, effect: 'brain' },
+  { main: '🤡', related: ['😂', '💀', '🤪'], label: 'Смешно', count: 34, effect: 'clown' },
+  { main: '🚩', related: ['⚠️', '🤨', '👎'], label: 'Спорно', count: 12, effect: 'flag' },
 ];
+
+const EFFECT_PRESETS = {
+  fire: [
+    { particles: 7, emojis: ['🔥','🔥','💥','🎆','🔥','💥','🎆'], spread: 55, sizeRange: [8, 26], angleRange: [-0.6, 0.6] },
+    { particles: 5, emojis: ['🔥','💥','🔥','🎆','🔥'], spread: 40, sizeRange: [12, 22], angleRange: [-0.8, 0.2] },
+    { particles: 8, emojis: ['🔥','🎆','💥','🔥','💥','🎆','🔥','🔥'], spread: 60, sizeRange: [6, 28], angleRange: [-0.4, 0.8] },
+    { particles: 6, emojis: ['💥','🔥','🎆','🔥','💥','🔥'], spread: 48, sizeRange: [10, 20], angleRange: [-0.5, 0.5] },
+    { particles: 9, emojis: ['🔥','🔥','💥','🔥','🎆','💥','🔥','🎆','🔥'], spread: 65, sizeRange: [5, 24], angleRange: [-0.7, 0.7] },
+    { particles: 4, emojis: ['🎆','💥','🔥','🎆'], spread: 35, sizeRange: [14, 30], angleRange: [-0.3, 0.3] },
+  ],
+  diamond: [
+    { particles: 5, emojis: ['💎','💠','💎','💠','💎'], spread: 35, sizeRange: [10, 16], angleRange: [-1, 1] },
+    { particles: 6, emojis: ['💠','💎','💠','💎','💠','💎'], spread: 40, sizeRange: [8, 14], angleRange: [-0.8, 0.8] },
+    { particles: 4, emojis: ['💎','💎','💠','💎'], spread: 30, sizeRange: [12, 18], angleRange: [-0.5, 0.5] },
+    { particles: 7, emojis: ['💠','💎','💠','💎','💠','💎','💠'], spread: 45, sizeRange: [6, 12], angleRange: [-1.2, 1.2] },
+    { particles: 5, emojis: ['💎','💠','💎','💠','💎'], spread: 38, sizeRange: [10, 15], angleRange: [-0.6, 0.6] },
+    { particles: 6, emojis: ['💠','💠','💎','💠','💎','💠'], spread: 42, sizeRange: [8, 16], angleRange: [-0.9, 0.9] },
+  ],
+  brain: [
+    { particles: 4, emojis: ['🧠','💡','📚','🤔'], spread: 30, sizeRange: [12, 20], angleRange: [-0.3, 0.3], vertical: true },
+    { particles: 5, emojis: ['🧠','💡','🧠','📚','🤔'], spread: 35, sizeRange: [10, 18], angleRange: [-0.4, 0.4], vertical: true },
+    { particles: 3, emojis: ['💡','🧠','📚'], spread: 25, sizeRange: [14, 22], angleRange: [-0.2, 0.2], vertical: true },
+    { particles: 6, emojis: ['🧠','🤔','💡','🧠','📚','💡'], spread: 40, sizeRange: [8, 16], angleRange: [-0.5, 0.5], vertical: true },
+    { particles: 4, emojis: ['📚','🧠','💡','🤔'], spread: 32, sizeRange: [12, 20], angleRange: [-0.35, 0.35], vertical: true },
+    { particles: 5, emojis: ['💡','🧠','💡','📚','🧠'], spread: 38, sizeRange: [10, 17], angleRange: [-0.45, 0.45], vertical: true },
+  ],
+  clown: [
+    { particles: 6, emojis: ['🤡','😂','💀','🤪','😂','🤡'], spread: 50, sizeRange: [10, 22], angleRange: [-0.8, 0.8] },
+    { particles: 5, emojis: ['😂','🤡','💀','🤪','😂'], spread: 45, sizeRange: [12, 20], angleRange: [-0.6, 0.6] },
+    { particles: 7, emojis: ['🤪','😂','🤡','💀','😂','🤪','🤡'], spread: 55, sizeRange: [8, 18], angleRange: [-0.9, 0.9] },
+    { particles: 4, emojis: ['💀','🤡','😂','🤪'], spread: 40, sizeRange: [14, 24], angleRange: [-0.5, 0.5] },
+    { particles: 8, emojis: ['🤡','😂','🤪','💀','😂','🤡','🤪','😂'], spread: 60, sizeRange: [6, 16], angleRange: [-1, 1] },
+    { particles: 5, emojis: ['😂','🤪','🤡','💀','😂'], spread: 48, sizeRange: [10, 21], angleRange: [-0.7, 0.7] },
+  ],
+  flag: [
+    { particles: 4, emojis: ['🚩','⚠️','🤨','👎'], spread: 35, sizeRange: [12, 18], angleRange: [-0.4, 0.4], horizontal: true },
+    { particles: 5, emojis: ['🚩','👎','⚠️','🤨','🚩'], spread: 40, sizeRange: [10, 16], angleRange: [-0.5, 0.5], horizontal: true },
+    { particles: 3, emojis: ['⚠️','🚩','👎'], spread: 30, sizeRange: [14, 20], angleRange: [-0.3, 0.3], horizontal: true },
+    { particles: 6, emojis: ['🚩','🤨','⚠️','👎','🚩','⚠️'], spread: 45, sizeRange: [8, 14], angleRange: [-0.6, 0.6], horizontal: true },
+    { particles: 4, emojis: ['👎','🚩','⚠️','🤨'], spread: 38, sizeRange: [12, 18], angleRange: [-0.45, 0.45], horizontal: true },
+    { particles: 5, emojis: ['⚠️','🚩','👎','🚩','🤨'], spread: 42, sizeRange: [10, 15], angleRange: [-0.55, 0.55], horizontal: true },
+  ],
+};
 
 const PostCard = ({ post }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,10 +59,10 @@ const PostCard = ({ post }) => {
   const [flyEmojis, setFlyEmojis] = useState([]);
   const [hoverPreview, setHoverPreview] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [animatingOut, setAnimatingOut] = useState(false);
   const scrollAccum = useRef(0);
   const hideTimer = useRef(null);
   const cardRef = useRef(null);
+  const clickCounts = useRef({});
 
   const shouldBlur = post.nsfw && !isUnlocked;
 
@@ -27,11 +70,7 @@ const PostCard = ({ post }) => {
     if (!isHovered) {
       scrollAccum.current = 0;
       if (expanded) {
-        setAnimatingOut(true);
-        setTimeout(() => {
-          setExpanded(false);
-          setAnimatingOut(false);
-        }, 500);
+        setExpanded(false);
       }
       setActiveReaction(null);
     }
@@ -41,7 +80,7 @@ const PostCard = ({ post }) => {
     if (!isHovered || expanded) return;
     e.preventDefault();
     scrollAccum.current += e.deltaY;
-    if (scrollAccum.current > 50) {
+    if (scrollAccum.current > 45) {
       setExpanded(true);
       scrollAccum.current = 0;
       setActiveReaction(null);
@@ -54,61 +93,49 @@ const PostCard = ({ post }) => {
   };
 
   const handleReactionLeave = () => {
-    hideTimer.current = setTimeout(() => setActiveReaction(null), 450);
+    hideTimer.current = setTimeout(() => setActiveReaction(null), 400);
   };
 
   const handleReactionClick = (emoji, effect, e) => {
     e.stopPropagation();
-    const rect = cardRef.current.getBoundingClientRect();
-    const ox = e.clientX - rect.left;
-    const oy = e.clientY - rect.top;
+    if (!clickCounts.current[emoji]) clickCounts.current[emoji] = 0;
+    const idx = clickCounts.current[emoji] % EFFECT_PRESETS[effect].length;
+    clickCounts.current[emoji]++;
+
+    const preset = EFFECT_PRESETS[effect][idx];
     const id = Date.now();
     const newFlies = [];
-    const count = 5 + Math.floor(Math.random() * 4);
 
-    for (let i = 0; i < count; i++) {
-      const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.6;
-      const dist = 20 + Math.random() * 45;
-      let x = Math.cos(angle) * dist;
-      let y = Math.sin(angle) * dist - 10;
-      let size = 10 + Math.random() * 16;
-      let rot = (Math.random() - 0.5) * 40;
-      let em = emoji;
-
-      if (effect === 'fire') {
-        y -= 10 + Math.random() * 25;
-        size = 8 + Math.random() * 22;
-        rot = (Math.random() - 0.5) * 60;
-      }
-      if (effect === 'diamond') {
-        em = i < 3 ? '💎' : '💠';
-        x *= 0.7; y *= 0.7;
-        size = 10 + Math.random() * 12;
-      }
-      if (effect === 'brain') {
-        y = -10 - i * 7;
-        x = (i - count / 2) * 12;
-        size = 14 - i * 1.5;
-        rot = 0;
-      }
-      if (effect === 'clown') {
-        x = (Math.random() - 0.5) * 70;
-        y = -5 - Math.random() * 50;
-        size = 12 + Math.random() * 18;
-        rot = (Math.random() - 0.5) * 50;
-      }
-      if (effect === 'flag') {
-        x = (i % 2 === 0 ? -1 : 1) * (18 + Math.random() * 35);
-        y = -8 - i * 6;
-        size = 14 - i * 2;
-        rot = (i % 2 === 0 ? -10 : 10);
+    for (let i = 0; i < preset.particles; i++) {
+      let angle, dist, x, y;
+      if (preset.vertical) {
+        angle = (Math.random() - 0.5) * preset.angleRange[1] * 2;
+        dist = 10 + Math.random() * preset.spread;
+        x = Math.sin(angle) * dist * 0.5;
+        y = -10 - (i / preset.particles) * preset.spread - Math.random() * 15;
+      } else if (preset.horizontal) {
+        const dir = i % 2 === 0 ? -1 : 1;
+        x = dir * (15 + Math.random() * preset.spread);
+        y = (Math.random() - 0.5) * preset.spread * 0.5;
+      } else {
+        angle = (i / preset.particles) * Math.PI * 2 + (Math.random() - 0.5) * preset.angleRange[1];
+        dist = 15 + Math.random() * preset.spread;
+        x = Math.cos(angle) * dist;
+        y = Math.sin(angle) * dist - 5;
       }
 
-      newFlies.push({ id: id + i, emoji: em, x, y, size, rot, ox, oy, delay: i * 0.025 });
+      newFlies.push({
+        id: id + i,
+        emoji: preset.emojis[i] || emoji,
+        x, y,
+        size: preset.sizeRange[0] + Math.random() * (preset.sizeRange[1] - preset.sizeRange[0]),
+        rot: (Math.random() - 0.5) * 45,
+        delay: i * 0.02,
+      });
     }
 
     setFlyEmojis((p) => [...p, ...newFlies]);
-    setTimeout(() => setFlyEmojis((p) => p.filter((f) => !newFlies.includes(f))), 850);
+    setTimeout(() => setFlyEmojis((p) => p.filter((f) => !newFlies.includes(f))), 800);
   };
 
   const handleClick = () => {
@@ -118,14 +145,14 @@ const PostCard = ({ post }) => {
     }
   };
 
-  const blurAmount = shouldBlur ? (hoverPreview ? '8px' : '24px') : 'none';
-  const blurScale = shouldBlur && hoverPreview ? 'scale(1.06)' : 'scale(1)';
+  const blurAmount = shouldBlur ? (hoverPreview ? '6px' : '22px') : 'none';
+  const blurScale = shouldBlur && hoverPreview ? 'scale(1.08)' : 'scale(1)';
   const activeData = REACTIONS.find((r) => r.main === activeReaction);
 
   return (
     <article
       ref={cardRef}
-      className={`post-card ${shouldBlur ? 'nsfw' : ''} ${isHovered ? 'hovered' : ''} ${expanded ? 'expanded' : ''} ${animatingOut ? 'collapsing' : ''}`}
+      className={`post-card ${shouldBlur ? 'nsfw' : ''} ${isHovered ? 'hovered' : ''} ${expanded ? 'expanded' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => { setIsHovered(false); handleReactionLeave(); setHoverPreview(false); }}
       onWheel={handleWheel}
@@ -138,7 +165,7 @@ const PostCard = ({ post }) => {
           {post.preview ? (
             <>
               <img src={post.preview} alt="" className="preview-img" style={{ filter: `blur(${blurAmount})`, transform: blurScale }} />
-              {shouldBlur && (<div className="nsfw-overlay"><span className="nsfw-icon">🔞</span></div>)}
+              {shouldBlur && <div className="nsfw-overlay"><span className="nsfw-icon">🔞</span></div>}
             </>
           ) : (
             <div className="card-preview-empty"><span className="empty-icon">{post.nsfw ? '🔞' : '💬'}</span></div>
@@ -155,7 +182,7 @@ const PostCard = ({ post }) => {
             {post.comments > 50 && <span className="hot-badge">🔥 горячо</span>}
           </div>
           <h3 className="card-title">{post.title}</h3>
-          {isHovered && !expanded && <span className="scroll-hint">↕ крути чтобы раскрыть</span>}
+          {isHovered && !expanded && <span className="scroll-hint">↕ крути</span>}
         </div>
 
         {!expanded && (
@@ -176,7 +203,7 @@ const PostCard = ({ post }) => {
         <div className={`related-row ${activeData ? 'show' : ''}`}
           onMouseEnter={() => clearTimeout(hideTimer.current)} onMouseLeave={handleReactionLeave}>
           {activeData?.related.map((sub, i) => (
-            <button key={sub} className="rel-btn" style={{ animationDelay: `${i * 0.04}s` }}
+            <button key={sub} className="rel-btn" style={{ animationDelay: `${i * 0.03}s` }}
               onClick={(e) => handleReactionClick(sub, 'clown', e)}>{sub}</button>
           ))}
         </div>
@@ -191,16 +218,16 @@ const PostCard = ({ post }) => {
             </div>
           )}
           <div className="expanded-body">
-            <p className="full-text">Здесь будет полный текст поста. Пользователи обсуждают эту тему очень активно, делятся опытом и спорят до хрипоты. Мнения разделились на два лагеря.</p>
+            <p className="full-text">Здесь будет полный текст поста. Обсуждение набирает обороты.</p>
             <div className="preview-comments">
-              <div className="preview-comment"><span className="pc-author">@user123</span><span className="pc-text">Полностью согласен, так и есть!</span></div>
-              <div className="preview-comment"><span className="pc-author">@dev_guy</span><span className="pc-text">Не могу понять хайп, обычная тема...</span></div>
-              <div className="preview-comment"><span className="pc-author">@thinker</span><span className="pc-text">Смотрите глубже, тут важен контекст.</span></div>
+              <div className="preview-comment"><span className="pc-author">@user123</span><span className="pc-text">Полностью согласен!</span></div>
+              <div className="preview-comment"><span className="pc-author">@dev_guy</span><span className="pc-text">Не могу понять хайп...</span></div>
+              <div className="preview-comment"><span className="pc-author">@thinker</span><span className="pc-text">Смотрите глубже.</span></div>
             </div>
           </div>
           <div className="expanded-reactions">
             {REACTIONS.map(({ main, count, label, effect }, i) => (
-              <button key={main} className="exp-reaction" style={{ animationDelay: `${0.5 + i * 0.06}s` }}
+              <button key={main} className="exp-reaction" style={{ animationDelay: `${0.35 + i * 0.04}s` }}
                 onClick={(e) => handleReactionClick(main, effect, e)} title={label}>
                 <span className="exp-emoji">{main}</span>
                 <span className="exp-count">{count}</span>
@@ -213,8 +240,7 @@ const PostCard = ({ post }) => {
       {flyEmojis.map((f) => (
         <span key={f.id} className="fly-particle" style={{
           '--x': `${f.x}px`, '--y': `${f.y}px`, '--s': `${f.size}px`,
-          '--r': `${f.rot}deg`, '--ox': `${f.ox}px`, '--oy': `${f.oy}px`,
-          animationDelay: `${f.delay}s`,
+          '--r': `${f.rot}deg`, '--d': `${f.delay}s`,
         }}>{f.emoji}</span>
       ))}
 
