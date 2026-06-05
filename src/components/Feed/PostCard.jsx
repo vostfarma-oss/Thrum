@@ -67,7 +67,7 @@ const PostCard = ({ post }) => {
 
   const shouldBlur = post.nsfw && !isUnlocked;
 
-  useEffect(() => {
+    useEffect(() => {
     if (!isHovered) {
       scrollAccum.current = 0;
       if (expanded) {
@@ -75,7 +75,7 @@ const PostCard = ({ post }) => {
         setTimeout(() => {
           setExpanded(false);
           setClosing(false);
-        }, 400);
+        }, 450);   // ← вот здесь поменяй 400 на 450
       }
       setActiveReaction(null);
     }
@@ -99,16 +99,15 @@ const PostCard = ({ post }) => {
     hideTimer.current = setTimeout(() => setActiveReaction(null), 400);
   };
 
-  const handleReactionClick = (emoji, effectKey, e) => {
+    const handleReactionClick = (emoji, effectKey, e) => {
     e.stopPropagation();
-    
     const btn = e.currentTarget;
     const card = cardRef.current;
     const btnRect = btn.getBoundingClientRect();
     const cardRect = card.getBoundingClientRect();
     const ox = btnRect.left + btnRect.width / 2 - cardRect.left;
     const oy = btnRect.top + btnRect.height / 2 - cardRect.top;
-    
+
     if (!clickIdx.current[effectKey]) clickIdx.current[effectKey] = 0;
     const presets = EFFECTS[effectKey];
     const p = presets[clickIdx.current[effectKey] % presets.length];
@@ -117,33 +116,38 @@ const PostCard = ({ post }) => {
     const id = Date.now();
     const flies = [];
     const count = p.emojis.length;
-    
+
     for (let i = 0; i < count; i++) {
       let x, y;
       if (p.vertical) {
-        x = (Math.random() - 0.5) * 40;
-        y = -8 - (i / count) * 60 - Math.random() * 15;
+        x = (Math.random() - 0.5) * 35;
+        y = -6 - (i / count) * 50 - Math.random() * 10;
       } else if (p.horizontal) {
-        x = (i % 2 === 0 ? -1 : 1) * (12 + Math.random() * 45);
-        y = (Math.random() - 0.5) * 35;
+        x = (i % 2 === 0 ? -1 : 1) * (10 + Math.random() * 40);
+        y = (Math.random() - 0.5) * 30;
       } else {
-        const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
-        const dist = 12 + Math.random() * 50;
+        const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+        const dist = 10 + Math.random() * 40;
         x = Math.cos(angle) * dist;
-        y = Math.sin(angle) * dist - 5;
+        y = Math.sin(angle) * dist - 4;
       }
+      // Не даём выйти за рамки
+      const maxDist = 90;
+      x = Math.max(-maxDist, Math.min(maxDist, x));
+      y = Math.max(-maxDist, Math.min(maxDist, y));
+
       flies.push({
         id: id + i,
         emoji: p.emojis[i],
         x, y,
         size: p.sizes[i],
-        rot: (Math.random() - 0.5) * 30,
-        delay: i * 0.025,
+        rot: (Math.random() - 0.5) * 25,
+        delay: i * 0.022,
         ox, oy,
       });
     }
     setFlyEmojis((prev) => [...prev, ...flies]);
-    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 900);
+    setTimeout(() => setFlyEmojis((prev) => prev.filter((f) => !flies.includes(f))), 800);
   };
 
   const handleClick = () => {
