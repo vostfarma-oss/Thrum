@@ -94,6 +94,14 @@ const PostCard = ({ post }) => {
 
   const handleReactionClick = (emoji, effectKey, e) => {
     e.stopPropagation();
+    
+    const btn = e.currentTarget;
+    const card = cardRef.current;
+    const btnRect = btn.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const ox = btnRect.left + btnRect.width/2 - cardRect.left;
+    const oy = btnRect.top + btnRect.height/2 - cardRect.top;
+    
     if (!clickIdx.current[effectKey]) clickIdx.current[effectKey] = 0;
     const presets = EFFECTS[effectKey];
     const p = presets[clickIdx.current[effectKey] % presets.length];
@@ -122,6 +130,7 @@ const PostCard = ({ post }) => {
         size: p.sizes[0] + Math.random() * (p.sizes[1] - p.sizes[0]),
         rot: (Math.random() - 0.5) * 40,
         delay: i * 0.022,
+        ox, oy,
       });
     }
     setFlyEmojis((prev) => [...prev, ...flies]);
@@ -210,7 +219,7 @@ const PostCard = ({ post }) => {
       )}
       {flyEmojis.map((f) => (
         <span key={f.id} className="fly-particle" style={{
-          '--x':`${f.x}px`,'--y':`${f.y}px`,'--s':`${f.size}px`,'--r':`${f.rot}deg`,'--d':`${f.delay}s`
+          '--x':`${f.x}px`,'--y':`${f.y}px`,'--s':`${f.size}px`,'--r':`${f.rot}deg`,'--d':`${f.delay}s`,'--ox':`${f.ox}px`,'--oy':`${f.oy}px`
         }}>{f.emoji}</span>
       ))}
       <div className="shine-border" />
